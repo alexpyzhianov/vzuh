@@ -1,0 +1,67 @@
+{
+    "name": "vzhuh",
+    "description": "Instant deployment of static websites to Yandex Cloud",
+    "version": "0.1.0",
+    "author": "Alexey Pyzhianov <alex.pyzhianov@gmail.com>",
+    "bin": {
+        "vzhuh": "./bin/run"
+    },
+    "bugs": "https://github.com/pyzhianov/vzhuh/issues",
+    "dependencies": {
+        "@oclif/command": "^1",
+        "@oclif/config": "^1",
+        "@oclif/plugin-help": "^2",
+        "aws-sdk": "^2.562.0",
+        "cli-ux": "^5.3.3",
+        "inquirer": "^7.0.0",
+        "mime-types": "^2.1.24"
+    },
+    "devDependencies": {
+        "@oclif/dev-cli": "^1.22.2",
+        "@types/inquirer": "^6.5.0",
+        "@types/jest": "^24.0.21",
+        "@types/mime-types": "^2.1.0",
+        "@types/mock-fs": "^4.10.0",
+        "@types/node": "^12.12.7",
+        "jest": "^24.9.0",
+        "mock-fs": "^4.10.3",
+        "nock": "^11.7.0",
+        "ts-jest": "^24.1.0",
+        "ts-node": "^8.5.0",
+        "typescript": "^3.7.2"
+    },
+    "engines": {
+        "node": ">=8.0.0"
+    },
+    "files": [
+        "/bin",
+        "/lib",
+        "/npm-shrinkwrap.json",
+        "/oclif.manifest.json"
+    ],
+    "homepage": "https://github.com/pyzhianov/vzhuh",
+    "keywords": [
+        "oclif"
+    ],
+    "license": "MIT",
+    "main": "lib/index.js",
+    "oclif": {
+        "commands": "./lib/commands",
+        "bin": "vzhuh",
+        "plugins": [
+            "@oclif/plugin-help"
+        ]
+    },
+    "repository": "pyzhianov/vzhuh",
+    "scripts": {
+        "postpack": "rm -f oclif.manifest.json",
+        "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+        "build": "yarn prepack && yarn postpack",
+        "test": "source .env && jest --rootDir src",
+        "start": "./bin/run",
+        "dev": "yarn test --watch",
+        "dev:debug": "DEBUG=nock.* yarn dev",
+        "version": "oclif-dev readme && git add README.md"
+    },
+    "types": "lib/index.d.ts"
+}
